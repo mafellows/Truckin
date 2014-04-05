@@ -7,8 +7,11 @@
 //
 
 #import "MapViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface MapViewController ()
+
+@property (nonatomic, strong) MKMapView *mapView;
 
 @end
 
@@ -19,7 +22,9 @@
     self = [super init];
     if (self) {
         self.navigationItem.title = @"Around Me";
-        self.tabBarItem.image = [UIImage imageNamed:@"pushpin"]; 
+        self.tabBarItem.image = [UIImage imageNamed:@"pushpin"];
+        
+        self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds]; 
     }
     return self;
 }

@@ -17,15 +17,15 @@
         CGFloat padding = 10.0f;
         CGFloat imageWidth = 80.0f;
         CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-        self.imageView = [[PFImageView alloc] initWithFrame:CGRectMake(padding, padding, imageWidth, imageWidth)];
-        self.imageView.layer.cornerRadius = imageWidth / 2.0f;
-        self.imageView.layer.masksToBounds = YES;
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill; 
-        [self addSubview:self.imageView];
+//        self.imageView = [[PFImageView alloc] initWithFrame:CGRectMake(padding, padding, imageWidth, imageWidth)];
+//        self.imageView.layer.cornerRadius = imageWidth / 2.0f;
+//        self.imageView.layer.masksToBounds = YES;
+//        self.imageView.contentMode = UIViewContentModeScaleAspectFill; 
+//        [self addSubview:self.imageView];
         
-        self.progressView = [[SAMCircleProgressView alloc] initWithFrame:self.imageView.frame];
-        [self.imageView addSubview:self.progressView];
-        
+//        self.progressView = [[SAMCircleProgressView alloc] initWithFrame:self.imageView.frame];
+//        [self.imageView addSubview:self.progressView];
+//        
         CGFloat labelHeight = 40.0f;
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(2*padding + imageWidth, padding, screenWidth - imageWidth - 3*padding, labelHeight)];
         [self.nameLabel sizeToFit];
@@ -39,7 +39,6 @@
         self.distanceLabel.textColor = [UIColor lightGrayColor];
         self.distanceLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.distanceLabel];
-        
     }
     return self;
 }

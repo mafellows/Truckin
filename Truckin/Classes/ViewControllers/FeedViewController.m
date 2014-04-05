@@ -9,8 +9,9 @@
 #import "FeedViewController.h"
 #import "LoginViewController.h"
 #import "FeedCell.h"
+#import "Truck.h"
 
-@interface FeedViewController ()
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) PFGeoPoint *currentLocation;
 @property (nonatomic, copy) NSArray *trucks;
@@ -21,13 +22,18 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Truckin";
         self.tabBarItem.image = [UIImage imageNamed:@"feed"];
         
         self.trucks = [NSArray array];
+        
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        
+        // [self.tableView registerClass:[FeedCell class] forCellReuseIdentifier:@"FeedCell"];
     }
     return self;
 }
@@ -81,6 +87,7 @@
                               otherButtonTitles:nil, nil] show];
         } else {
             self.trucks = objects;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -92,19 +99,30 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f; 
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.trucks.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FeedCell";
-    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    Truck *truck = [[Truck alloc] initWithObject:[self.trucks objectAtIndex:indexPath.row]];
+    NSLog(@"%@", truck);
+    
+    cell.textLabel.text = truck.name;
+    CGFloat distance = [truck.location distanceInMilesTo:self.currentLocation];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f miles away", distance];
     
     
     return cell;
