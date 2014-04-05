@@ -81,7 +81,7 @@
         nameLabel.textColor = [UIColor whiteColor];
         [self.headerImageView addSubview:nameLabel];
         
-        CGRect descriptionFrame = CGRectMake(100.0f, 40.0f, 220.0f, 100.0f);
+        CGRect descriptionFrame = CGRectMake(100.0f, 30.0f, 220.0f, 100.0f);
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:descriptionFrame];
         descriptionLabel.text = truck.truckDescription;
         descriptionLabel.numberOfLines = 0;

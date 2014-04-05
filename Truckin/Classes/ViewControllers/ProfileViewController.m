@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "ProfileHeaderView.h"
+#import "MyTruckViewController.h"
 
 typedef NS_ENUM(NSInteger, CellIndex) {
     kCellFavorites,
@@ -89,6 +90,8 @@ typedef NS_ENUM(NSInteger, CellIndex) {
 {
     if (indexPath.row == kCellLogOut) {
         [self logOut];
+    } else if (indexPath.row == kCellMyTruck) {
+        [self showMyTruck];
     }
 }
 
@@ -98,6 +101,12 @@ typedef NS_ENUM(NSInteger, CellIndex) {
 {
     [PFUser logOut];
     self.tabBarController.selectedIndex = 0; 
+}
+
+- (void)showMyTruck
+{
+    MyTruckViewController *myTruckVC = [[MyTruckViewController alloc] init];
+    [self.navigationController pushViewController:myTruckVC animated:YES]; 
 }
 
 @end

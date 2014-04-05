@@ -43,6 +43,8 @@
 		8F8BF1CE18F0824400E2BA0E /* TruckHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CD18F0824400E2BA0E /* TruckHeaderView.m */; };
 		8F8BF1D018F0902400E2BA0E /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CF18F0902400E2BA0E /* location.png */; };
 		8F8BF1D218F0903F00E2BA0E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1D118F0903F00E2BA0E /* location@2x.png */; };
+		8F8BF1D518F0926500E2BA0E /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1D418F0926500E2BA0E /* MapManager.m */; };
+		8F8BF1D818F0956B00E2BA0E /* MyTruckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1D718F0956B00E2BA0E /* MyTruckViewController.m */; };
 		9B3D204695B54D90ADD1D7CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9B06060644E2794B9FC0F /* Foundation.framework */; };
 		B2360EC752A04E8880B0EA8F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE694411EE2649F8BC63B246 /* libPods.a */; };
 		BDDA7C73C4584161934E1628 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D151243828974E89A3D5AB98 /* XCTest.framework */; };
@@ -113,6 +115,10 @@
 		8F8BF1CD18F0824400E2BA0E /* TruckHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TruckHeaderView.m; sourceTree = "<group>"; };
 		8F8BF1CF18F0902400E2BA0E /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../location.png; sourceTree = "<group>"; };
 		8F8BF1D118F0903F00E2BA0E /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
+		8F8BF1D318F0926500E2BA0E /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapManager.h; path = ../../../MapManager.h; sourceTree = "<group>"; };
+		8F8BF1D418F0926500E2BA0E /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapManager.m; path = ../../../MapManager.m; sourceTree = "<group>"; };
+		8F8BF1D618F0956B00E2BA0E /* MyTruckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTruckViewController.h; sourceTree = "<group>"; };
+		8F8BF1D718F0956B00E2BA0E /* MyTruckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTruckViewController.m; sourceTree = "<group>"; };
 		A05D902393854C4D9680E9A8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4F9B06060644E2794B9FC0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CBDB929CC8014C8F9770D924 /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +185,8 @@
 		0B2514F74FCC413CB6C6F4C3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1D618F0956B00E2BA0E /* MyTruckViewController.h */,
+				8F8BF1D718F0956B00E2BA0E /* MyTruckViewController.m */,
 				8F8BF1C918F074E300E2BA0E /* DetailViewController.h */,
 				8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */,
 				8F8BF1A918F04E8A00E2BA0E /* LoginViewController.h */,
@@ -223,6 +231,8 @@
 		210AB3CD4808448DA2DC3AD1 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1D318F0926500E2BA0E /* MapManager.h */,
+				8F8BF1D418F0926500E2BA0E /* MapManager.m */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -569,9 +579,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8BF1D518F0926500E2BA0E /* MapManager.m in Sources */,
 				8F8BF1AB18F04E8A00E2BA0E /* LoginViewController.m in Sources */,
 				8F8BF19F18F0478A00E2BA0E /* BLBaseNavigationController.m in Sources */,
 				FF3B4FB1EBA24B9A98E91E04 /* AppDelegate.m in Sources */,
+				8F8BF1D818F0956B00E2BA0E /* MyTruckViewController.m in Sources */,
 				8F8BF1C318F06C1F00E2BA0E /* ProfileHeaderView.m in Sources */,
 				8F8BF1A818F0492100E2BA0E /* FeedCell.m in Sources */,
 				8F8BF1A218F0479C00E2BA0E /* MapViewController.m in Sources */,

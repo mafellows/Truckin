@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import "Truck.h"
+#import "MapManager.h"
 #import <MapKit/MapKit.h>
 
 @interface MapViewController () <MKMapViewDelegate>
@@ -30,6 +31,7 @@
         self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
         [self.view addSubview:self.mapView];
         self.mapView.delegate = self;
+        self.mapView.showsUserLocation = YES; 
     }
     return self;
 }
@@ -89,6 +91,14 @@
         annotaiton.title = truck.name;
         [self.mapView addAnnotation:annotaiton]; 
     }
+    
+    Truck *truck = [[Truck alloc] initWithObject:[self.trucks lastObject]];
+    
+    MapManager *manager = [[MapManager alloc] initWithCoordinates:truck.location.latitude
+                                                        longitude:truck.location.longitude
+                                                     userLocation:self.userLocation];
+    MKCoordinateRegion mapRegion = [manager mapRegion];
+    [self.mapView setRegion:mapRegion animated:YES]; 
 }
 
 @end
