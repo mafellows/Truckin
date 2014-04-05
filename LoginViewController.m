@@ -28,18 +28,34 @@
         truckinLabel.textAlignment = NSTextAlignmentCenter;
         truckinLabel.text = @"Truckin";
         truckinLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:60.0f];
-        // truckinLabel.textColor = [UIColor whiteColor];
+        truckinLabel.textColor = [UIColor whiteColor];
         shimmeringView.contentView = truckinLabel;
         
         shimmeringView.shimmering = YES;
         
+        self.view.backgroundColor = [UIColor darkGrayColor];
+        
         CGRect twitterLoginFrame = CGRectMake(padding, 250.0f, screenWidth - 2*padding, 80.0f);
         UIButton *twitterLoginButton = [[UIButton alloc] initWithFrame:twitterLoginFrame];
         twitterLoginButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [twitterLoginButton setImage:[UIImage imageNamed:@"twitterLogin"] forState:UIControlStateNormal];
+        // [twitterLoginButton setImage:[UIImage imageNamed:@"twitterLogin"] forState:UIControlStateNormal];
+        [twitterLoginButton setTitle:@"Log in with Twitter" forState:UIControlStateNormal];
+        twitterLoginButton.titleLabel.textColor = [UIColor whiteColor];
+        twitterLoginButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        twitterLoginButton.layer.borderWidth = 1.0f;
+        twitterLoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:24.0f];
         twitterLoginButton.layer.masksToBounds = YES;
+        twitterLoginButton.layer.cornerRadius = 5.0f;
         [twitterLoginButton addTarget:self action:@selector(logInWithTwitter:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:twitterLoginButton];
+        
+        [UIView animateWithDuration:2.0 animations:^{
+            [twitterLoginButton setAlpha:0.0];
+        }];
+        
+        [UIView animateWithDuration:2.0 animations:^{
+            [twitterLoginButton setAlpha:1.0f];
+        }];
 
         
     }

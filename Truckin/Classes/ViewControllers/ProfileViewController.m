@@ -11,7 +11,6 @@
 #import "MyTruckViewController.h"
 
 typedef NS_ENUM(NSInteger, CellIndex) {
-    kCellFavorites,
     kCellMyTruck,
     kCellGoOffline,
     kCellUpdateLocation,
@@ -83,10 +82,8 @@ typedef NS_ENUM(NSInteger, CellIndex) {
         
     }
     
-    if (indexPath.row == kCellFavorites) {
-        cell.textLabel.text = @"Favorites";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.row == kCellMyTruck) {
+   
+    if (indexPath.row == kCellMyTruck) {
         cell.textLabel.text = @"My Truck";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.row == kCellLogOut) {
@@ -97,6 +94,8 @@ typedef NS_ENUM(NSInteger, CellIndex) {
     } else if (indexPath.row == kCellUpdateLocation) {
         cell.textLabel.text = @"Update Location";
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone; 
     return cell;
 }
 

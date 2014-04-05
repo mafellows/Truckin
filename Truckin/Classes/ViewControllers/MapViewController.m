@@ -57,7 +57,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self addAnnotations]; 
+    if (self.userLocation != nil) {
+        [self findTrucksNearGeoPoint:self.userLocation]; 
+    }
 }
 
 #pragma mark - Netowrking
