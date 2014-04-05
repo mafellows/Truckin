@@ -37,6 +37,8 @@
 		8F8BF1B618F0563400E2BA0E /* feed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1B418F0563400E2BA0E /* feed@2x.png */; };
 		8F8BF1B718F0563400E2BA0E /* pushpin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1B518F0563400E2BA0E /* pushpin@2x.png */; };
 		8F8BF1BA18F0585F00E2BA0E /* Truck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1B918F0585F00E2BA0E /* Truck.m */; };
+		8F8BF1C318F06C1F00E2BA0E /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */; };
+		8F8BF1C518F06E6200E2BA0E /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */; };
 		9B3D204695B54D90ADD1D7CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9B06060644E2794B9FC0F /* Foundation.framework */; };
 		B2360EC752A04E8880B0EA8F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE694411EE2649F8BC63B246 /* libPods.a */; };
 		BDDA7C73C4584161934E1628 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D151243828974E89A3D5AB98 /* XCTest.framework */; };
@@ -98,6 +100,9 @@
 		8F8BF1B518F0563400E2BA0E /* pushpin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pushpin@2x.png"; path = "../../pushpin@2x.png"; sourceTree = "<group>"; };
 		8F8BF1B818F0585F00E2BA0E /* Truck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
 		8F8BF1B918F0585F00E2BA0E /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
+		8F8BF1C118F06C1F00E2BA0E /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
+		8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
+		8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar@2x.png"; path = "../../avatar@2x.png"; sourceTree = "<group>"; };
 		A05D902393854C4D9680E9A8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4F9B06060644E2794B9FC0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CBDB929CC8014C8F9770D924 /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +226,7 @@
 		3583D9D09D3242BE82036D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */,
 				8F8BF1B418F0563400E2BA0E /* feed@2x.png */,
 				8F8BF1B518F0563400E2BA0E /* pushpin@2x.png */,
 				8F8BF1B018F055A700E2BA0E /* feed.png */,
@@ -352,6 +358,8 @@
 		F7A1108BA3364CBDA320C71C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1C118F06C1F00E2BA0E /* ProfileHeaderView.h */,
+				8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */,
 				8F8BF1A618F0492100E2BA0E /* FeedCell.h */,
 				8F8BF1A718F0492100E2BA0E /* FeedCell.m */,
 			);
@@ -449,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F8BF1AD18F0511100E2BA0E /* twitterLogin@2x.png in Resources */,
+				8F8BF1C518F06E6200E2BA0E /* avatar@2x.png in Resources */,
 				013E6ADBE07A411BA424FB0C /* Images.xcassets in Resources */,
 				8F8BF1B318F055A700E2BA0E /* pushpin.png in Resources */,
 				8F8BF1B718F0563400E2BA0E /* pushpin@2x.png in Resources */,
@@ -545,6 +554,7 @@
 				8F8BF1AB18F04E8A00E2BA0E /* LoginViewController.m in Sources */,
 				8F8BF19F18F0478A00E2BA0E /* BLBaseNavigationController.m in Sources */,
 				FF3B4FB1EBA24B9A98E91E04 /* AppDelegate.m in Sources */,
+				8F8BF1C318F06C1F00E2BA0E /* ProfileHeaderView.m in Sources */,
 				8F8BF1A818F0492100E2BA0E /* FeedCell.m in Sources */,
 				8F8BF1A218F0479C00E2BA0E /* MapViewController.m in Sources */,
 				8F8BF19C18F0473E00E2BA0E /* FeedViewController.m in Sources */,
