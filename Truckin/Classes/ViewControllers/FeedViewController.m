@@ -7,8 +7,13 @@
 //
 
 #import "FeedViewController.h"
+#import "LoginViewController.h"
+#import "FeedCell.h"
 
 @interface FeedViewController ()
+
+@property (nonatomic, strong) PFGeoPoint *currentLocation;
+@property (nonatomic, copy) NSArray *trucks;
 
 @end
 
@@ -19,7 +24,10 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"Truckin"; 
+        self.navigationItem.title = @"Truckin";
+        self.tabBarItem.image = [UIImage imageNamed:@"feed"];
+        
+        self.trucks = [NSArray array];
     }
     return self;
 }
@@ -28,17 +36,53 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self checkLogin];
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[[error userInfo] valueForKey:@"error"]
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            self.currentLocation = geoPoint;
+            [self findTrucksNearGeoPoint:self.currentLocation];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Helpers
+
+- (void)checkLogin
+{
+    if (![PFUser currentUser]) {
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        [self presentViewController:loginVC animated:NO completion:nil];
+    }
+}
+
+- (void)findTrucksNearGeoPoint:(PFGeoPoint *)geoPoint
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Truck"];
+    [query whereKey:@"location" nearGeoPoint:geoPoint withinMiles:50];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[[error userInfo] valueForKey:@"error"]
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            self.trucks = objects;
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -55,10 +99,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"FeedCell";
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
+    
     
     return cell;
 }

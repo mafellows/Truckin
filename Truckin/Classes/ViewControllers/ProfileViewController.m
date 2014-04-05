@@ -18,7 +18,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        self.tabBarItem.image = [UIImage imageNamed:@"people"]; 
     }
     return self;
 }

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SAMCircleProgressView.h>
 
 @interface FeedCell : UITableViewCell
 
-@property (nonatomic, strong) PFImageView *imageView; 
+@property (nonatomic, strong) PFImageView *imageView;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *distanceLabel;
+@property (nonatomic, strong) SAMCircleProgressView *progressView; 
 
 @end
