@@ -1,0 +1,38 @@
+PODS:
+  - JazzHands (0.0.4)
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - LBBlurredImage (0.2.0)
+  - MBProgressHUD (0.8)
+  - NSDate+TimeAgo (1.0.3)
+  - OCMock (2.2.3)
+  - SAMCircleProgressView (0.1.1)
+  - SAMGradientView (0.2.1)
+  - Shimmer (1.0.1)
+
+DEPENDENCIES:
+  - JazzHands
+  - Kiwi/XCTest
+  - LBBlurredImage
+  - MBProgressHUD (~> 0.8)
+  - NSDate+TimeAgo
+  - OCMock
+  - SAMCircleProgressView
+  - SAMGradientView
+  - Shimmer
+
+SPEC CHECKSUMS:
+  JazzHands: 9069a8ec67495c8ace35238dad19fdeaa58716cf
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
+  LBBlurredImage: 26bacd10063a6e886de6a374f4727c3cefb22fc2
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  NSDate+TimeAgo: ca09306750ac2564418042aa10cf8365c36d2cee
+  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
+  SAMCircleProgressView: 2da5c92b83e71f4ca587fa8128e5cf87d76c36c4
+  SAMGradientView: ab5543a14a69ecf5fc10239091740291c50b328c
+  Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
+
+COCOAPODS: 0.29.0
