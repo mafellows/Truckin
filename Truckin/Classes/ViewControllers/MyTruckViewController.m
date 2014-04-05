@@ -8,10 +8,15 @@
 
 #import "MyTruckViewController.h"
 
-@interface MyTruckViewController ()
+@interface MyTruckViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITextField *nameField;
 @property (nonatomic, strong) UITextField *descriptionField;
+@property (nonatomic, strong) UIImage *profileImage;
+@property (nonatomic, strong) UIImage *headerImage;
+@property (nonatomic, strong) UIImagePickerController *profilePicker;
+@property (nonatomic, strong) UIImagePickerController *headerPicker;
+@property (nonatomic, strong) PFGeoPoint *userLocation;
 
 @end
 
@@ -25,6 +30,10 @@
         if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
             [self setEdgesForExtendedLayout:UIRectEdgeNone];
         }
+        
+        self.profileImage = nil;
+        self.headerImage = nil;
+        
         
         self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
         CGFloat padding = 10.0f;
@@ -64,8 +73,6 @@
                                                                       action:@selector(saveTruck:)];
         self.navigationItem.rightBarButtonItem = saveButton;
         
-        
-        
     }
     return self;
 }
@@ -75,18 +82,50 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.navigationItem.title = @"My Truck";
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"Unable to get current location"
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            self.userLocation = geoPoint;
+        }
+    }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (picker == self.profilePicker) {
+        self.profileImage = image;
+    } else {
+        self.headerImage = image;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil]; 
 }
 
 #pragma mark - Selector
 
 - (void)addProfileButton:(id)sender
 {
-    // Add the image
+    self.profilePicker = [[UIImagePickerController alloc] init];
+    [self.profilePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    self.profilePicker.allowsEditing = YES;
+    [self.profilePicker setDelegate:self];
+    [self presentViewController:self.profilePicker animated:YES completion:nil];
 }
 
 - (void)addHeaderButton:(id)sender
 {
-    //
+    self.headerPicker = [[UIImagePickerController alloc] init];
+    self.headerPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.headerPicker.allowsEditing = YES;
+    self.headerPicker.delegate = self;
+    [self presentViewController:self.headerPicker animated:YES completion:nil];
 }
 
 - (void)removeKeyboard:(UIGestureRecognizer *)recognizer
@@ -101,6 +140,32 @@
 
 - (void)saveTruck:(id)sender
 {
+    PFObject *truck = [PFObject objectWithClassName:@"Truck"];
+    truck[@"name"] = self.nameField.text;
+    truck[@"truck_description"] = self.descriptionField.text;
+    truck[@"twitter"] = @"mafellows";
+    truck[@"url"] = @"http://www.example.com";
+    truck[@"location"] = self.userLocation;
+    
+    NSData *profileImageData = UIImagePNGRepresentation(self.profileImage);
+    PFFile *imageFile = [PFFile fileWithName:@"profile.png" data:profileImageData];
+    truck[@"image"] = imageFile;
+    
+    NSData *headerImageData = UIImagePNGRepresentation(self.headerImage);
+    PFFile *headerFile = [PFFile fileWithName:@"header.png" data:headerImageData];
+    truck[@"header_image"] = headerFile;
+    [truck saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"Unable to save Food Truck"
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            // Handle success...
+        }
+    }];
+    
     
 }
 

@@ -18,7 +18,7 @@
     if (self) {
         // Initialization code
         self.headerImageView = [[PFImageView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, 200.0f)];
-        self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.headerImageView];
         
         PFFile *headerFile = truck.headerImage;

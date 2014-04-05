@@ -54,10 +54,10 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    [self addAnnotations]; 
 }
 
 #pragma mark - Netowrking

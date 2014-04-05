@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) PFGeoPoint *currentLocation;
 @property (nonatomic, copy) NSArray *trucks;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -33,6 +34,10 @@
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
+        [self.tableView addSubview:self.refreshControl];
         
         // [self.tableView registerClass:[FeedCell class] forCellReuseIdentifier:@"FeedCell"];
     }
@@ -73,6 +78,11 @@
     }
 }
 
+- (void)refreshData:(id)sender
+{
+    [self findTrucksNearGeoPoint:self.currentLocation];
+}
+
 - (void)findTrucksNearGeoPoint:(PFGeoPoint *)geoPoint
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Truck"];
@@ -86,6 +96,10 @@
                               otherButtonTitles:nil, nil] show];
         } else {
             self.trucks = objects;
+            if ([self.refreshControl isRefreshing]) {
+                [self.refreshControl endRefreshing]; 
+            }
+            
             [self.tableView reloadData];
         }
     }];
