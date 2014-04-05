@@ -146,6 +146,7 @@
     truck[@"twitter"] = @"mafellows";
     truck[@"url"] = @"http://www.example.com";
     truck[@"location"] = self.userLocation;
+    truck[@"twitter_id"] = [[PFUser currentUser] objectId]; 
     
     NSData *profileImageData = UIImagePNGRepresentation(self.profileImage);
     PFFile *imageFile = [PFFile fileWithName:@"profile.png" data:profileImageData];

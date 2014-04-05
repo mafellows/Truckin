@@ -13,11 +13,15 @@
 typedef NS_ENUM(NSInteger, CellIndex) {
     kCellFavorites,
     kCellMyTruck,
+    kCellGoOffline,
+    kCellUpdateLocation,
     kCellLogOut,
     kCellCount
 };
 
 @interface ProfileViewController ()
+
+@property (nonatomic, strong) PFGeoPoint *userLocation;
 
 @end
 
@@ -36,6 +40,18 @@ typedef NS_ENUM(NSInteger, CellIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"Unable to find geo point"
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            self.userLocation = geoPoint;
+        }
+    }];
 
     self.tableView.tableHeaderView = [[ProfileHeaderView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 50.0f)];
 }
@@ -76,8 +92,11 @@ typedef NS_ENUM(NSInteger, CellIndex) {
     } else if (indexPath.row == kCellLogOut) {
         cell.textLabel.text = @"Log Out";
         cell.textLabel.textColor = [UIColor redColor];
+    } else if (indexPath.row == kCellGoOffline) {
+        cell.textLabel.text = @"Go Offline";
+    } else if (indexPath.row == kCellUpdateLocation) {
+        cell.textLabel.text = @"Update Location";
     }
-    
     return cell;
 }
 
@@ -92,6 +111,10 @@ typedef NS_ENUM(NSInteger, CellIndex) {
         [self logOut];
     } else if (indexPath.row == kCellMyTruck) {
         [self showMyTruck];
+    } else if (indexPath.row == kCellGoOffline) {
+        [self goOffline];
+    } else if (indexPath.row == kCellUpdateLocation) {
+        [self updateLocation];
     }
 }
 
@@ -107,6 +130,94 @@ typedef NS_ENUM(NSInteger, CellIndex) {
 {
     MyTruckViewController *myTruckVC = [[MyTruckViewController alloc] init];
     [self.navigationController pushViewController:myTruckVC animated:YES]; 
+}
+
+- (void)goOffline
+{
+    PFQuery *truckQuery = [PFQuery queryWithClassName:@"Truck"];
+    [truckQuery whereKey:@"twitter_id" equalTo:[PFUser currentUser].objectId];
+    [truckQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"Unable to go offline"
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            
+            if (objects.count == 0) {
+                [[[UIAlertView alloc] initWithTitle:@"Uh oh! "
+                                            message:@"Looks like you don't have any trucks!"
+                                           delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil, nil] show];
+            } else {
+                PFObject *truck = [objects firstObject];
+                PFGeoPoint *geoPoint = [[PFGeoPoint alloc] init];
+                geoPoint.latitude = 0.0;
+                geoPoint.longitude = 0.0;
+                truck[@"location"] = geoPoint;
+                [truck saveInBackgroundWithBlock:^(BOOL succeeded, NSError *saveError) {
+                    if (saveError) {
+                        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"Unable to save"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil] show];
+                    } else {
+                        [[[UIAlertView alloc] initWithTitle:@"Whooo!"
+                                                    message:@"What a day. We took you off the map."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil] show];
+                    }
+                }];
+            }
+        }
+    }];
+}
+
+- (void)updateLocation
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Truck"];
+    [query whereKey:@"twitter_id" equalTo:[[PFUser currentUser] objectId]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"We didn't find any of your trucks."
+                                       delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        } else {
+            if (objects.count == 0) {
+                [[[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                            message:@"Looks like you don't have any food trucks.."
+                                           delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil, nil] show];
+            } else {
+                PFObject *truck = [objects objectAtIndex:0];
+                truck[@"location"] = self.userLocation;
+                [truck saveInBackgroundWithBlock:^(BOOL succeeded, NSError *saveError) {
+                    if (saveError) {
+                        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"Unable to update location"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil] show];
+                    } else {
+                        [[[UIAlertView alloc] initWithTitle:@"Hey Truckster"
+                                                    message:@"We succesfully updated your location"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil] show];
+                    
+                    }
+                }];
+            }
+            
+        }
+    }];
 }
 
 @end
