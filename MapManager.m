@@ -50,7 +50,7 @@
     mapRegion.center.latitude = (southWest.latitude + northEast.latitude) / 2.0;
     mapRegion.center.longitude = (southWest.longitude + northEast.longitude) / 2.0;
     mapRegion.span.latitudeDelta = meters / 111319.5; // ??? why that number ?
-    mapRegion.span.longitudeDelta = 0.03;
+    mapRegion.span.longitudeDelta = 0.2;
     return mapRegion; 
 }
 

@@ -10,6 +10,9 @@
 
 @interface MyTruckViewController ()
 
+@property (nonatomic, strong) UITextField *nameField;
+@property (nonatomic, strong) UITextField *descriptionField;
+
 @end
 
 @implementation MyTruckViewController
@@ -22,8 +25,6 @@
         if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
             [self setEdgesForExtendedLayout:UIRectEdgeNone];
         }
-        
-        self.navigationItem.title = @"My Truck"; 
         
         self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
         CGFloat padding = 10.0f;
@@ -50,6 +51,21 @@
         [headerButton addTarget:self action:@selector(addHeaderButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:headerButton];
         
+        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(removeKeyboard:)];
+        [self.view addGestureRecognizer:tgr];
+        
+        self.nameField = nameField;
+        self.descriptionField = descriptionField;
+        
+        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(saveTruck:)];
+        self.navigationItem.rightBarButtonItem = saveButton;
+        
+        
+        
     }
     return self;
 }
@@ -58,6 +74,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationItem.title = @"My Truck";
 }
 
 #pragma mark - Selector
@@ -70,6 +87,21 @@
 - (void)addHeaderButton:(id)sender
 {
     //
+}
+
+- (void)removeKeyboard:(UIGestureRecognizer *)recognizer
+{
+    NSArray *textFields = @[ self.nameField, self.descriptionField ];
+    for (UITextField *textField in textFields) {
+        if ([textField isFirstResponder]) {
+            [textField resignFirstResponder];
+        }
+    }
+}
+
+- (void)saveTruck:(id)sender
+{
+    
 }
 
 @end
