@@ -39,6 +39,7 @@
 		8F8BF1BA18F0585F00E2BA0E /* Truck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1B918F0585F00E2BA0E /* Truck.m */; };
 		8F8BF1C318F06C1F00E2BA0E /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */; };
 		8F8BF1C518F06E6200E2BA0E /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */; };
+		8F8BF1CB18F074E300E2BA0E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */; };
 		9B3D204695B54D90ADD1D7CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9B06060644E2794B9FC0F /* Foundation.framework */; };
 		B2360EC752A04E8880B0EA8F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE694411EE2649F8BC63B246 /* libPods.a */; };
 		BDDA7C73C4584161934E1628 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D151243828974E89A3D5AB98 /* XCTest.framework */; };
@@ -103,6 +104,8 @@
 		8F8BF1C118F06C1F00E2BA0E /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
 		8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
 		8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar@2x.png"; path = "../../avatar@2x.png"; sourceTree = "<group>"; };
+		8F8BF1C918F074E300E2BA0E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A05D902393854C4D9680E9A8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4F9B06060644E2794B9FC0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CBDB929CC8014C8F9770D924 /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +172,8 @@
 		0B2514F74FCC413CB6C6F4C3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1C918F074E300E2BA0E /* DetailViewController.h */,
+				8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */,
 				8F8BF1A918F04E8A00E2BA0E /* LoginViewController.h */,
 				8F8BF1AA18F04E8A00E2BA0E /* LoginViewController.m */,
 				8F8BF1A318F047B200E2BA0E /* ProfileViewController.h */,
@@ -558,6 +563,7 @@
 				8F8BF1A818F0492100E2BA0E /* FeedCell.m in Sources */,
 				8F8BF1A218F0479C00E2BA0E /* MapViewController.m in Sources */,
 				8F8BF19C18F0473E00E2BA0E /* FeedViewController.m in Sources */,
+				8F8BF1CB18F074E300E2BA0E /* DetailViewController.m in Sources */,
 				8F8BF1BA18F0585F00E2BA0E /* Truck.m in Sources */,
 				8F8BF1A518F047B200E2BA0E /* ProfileViewController.m in Sources */,
 				2D94CA15194F4DB2A4533664 /* main.m in Sources */,

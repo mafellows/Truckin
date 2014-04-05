@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, strong) PFGeoPoint *location;
-@property (nonatomic, copy) NSString *twitter;
+@property (nonatomic, strong) NSString *twitterName;
 @property (nonatomic, copy) NSString *urlString;
 @property (nonatomic, strong) PFFile *image;
 @property (nonatomic, strong) PFFile *headerImage;

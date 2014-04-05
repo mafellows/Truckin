@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, CellIndex) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.row == kCellLogOut) {
         cell.textLabel.text = @"Log Out";
-        cell.textLabel.textColor = [UIColor redColor]; 
+        cell.textLabel.textColor = [UIColor redColor];
     }
     
     return cell;
@@ -83,6 +83,21 @@ typedef NS_ENUM(NSInteger, CellIndex) {
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 80.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == kCellLogOut) {
+        [self logOut];
+    }
+}
+
+#pragma mark - Helpers
+
+- (void)logOut
+{
+    [PFUser logOut];
+    self.tabBarController.selectedIndex = 0; 
 }
 
 @end

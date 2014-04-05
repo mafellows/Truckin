@@ -17,10 +17,10 @@
         _name = [object valueForKey:@"name"];
         _description = [object valueForKey:@"description"];
         _location = [object objectForKey:@"location"];
-        _twitter = [object valueForKey:@"twitter"];
+        _twitterName = [object valueForKey:@"twitter"];
         _urlString = [object valueForKey:@"url"];
         _image = [object objectForKey:@"image"];
-        _headerImage = [object valueForKey:@"header_image"]; 
+        _headerImage = [object objectForKey:@"header_image"];
         
     }
     return self;

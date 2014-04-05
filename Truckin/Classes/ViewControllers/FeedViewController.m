@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "FeedCell.h"
 #import "Truck.h"
+#import "DetailViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -40,9 +41,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    [self checkLogin];
+    [super viewDidLoad]; 
     
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (error) {
@@ -58,10 +57,10 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    [self checkLogin];
 }
 
 #pragma mark - Helpers
@@ -126,6 +125,13 @@
     
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Truck *truck = [[Truck alloc] initWithObject:[self.trucks objectAtIndex:indexPath.row]];
+    DetailViewController *detailVC = [[DetailViewController alloc] initWithTruck:truck];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end
