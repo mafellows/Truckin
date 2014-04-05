@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         _name = [object valueForKey:@"name"];
-        _description = [object valueForKey:@"description"];
+        _truckDescription = [object valueForKey:@"truck_description"];
         _location = [object objectForKey:@"location"];
         _twitterName = [object valueForKey:@"twitter"];
         _urlString = [object valueForKey:@"url"];

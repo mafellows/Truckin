@@ -40,6 +40,9 @@
 		8F8BF1C318F06C1F00E2BA0E /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */; };
 		8F8BF1C518F06E6200E2BA0E /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */; };
 		8F8BF1CB18F074E300E2BA0E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */; };
+		8F8BF1CE18F0824400E2BA0E /* TruckHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CD18F0824400E2BA0E /* TruckHeaderView.m */; };
+		8F8BF1D018F0902400E2BA0E /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1CF18F0902400E2BA0E /* location.png */; };
+		8F8BF1D218F0903F00E2BA0E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F8BF1D118F0903F00E2BA0E /* location@2x.png */; };
 		9B3D204695B54D90ADD1D7CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F9B06060644E2794B9FC0F /* Foundation.framework */; };
 		B2360EC752A04E8880B0EA8F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE694411EE2649F8BC63B246 /* libPods.a */; };
 		BDDA7C73C4584161934E1628 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D151243828974E89A3D5AB98 /* XCTest.framework */; };
@@ -106,6 +109,10 @@
 		8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar@2x.png"; path = "../../avatar@2x.png"; sourceTree = "<group>"; };
 		8F8BF1C918F074E300E2BA0E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8F8BF1CA18F074E300E2BA0E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8F8BF1CC18F0824400E2BA0E /* TruckHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TruckHeaderView.h; sourceTree = "<group>"; };
+		8F8BF1CD18F0824400E2BA0E /* TruckHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TruckHeaderView.m; sourceTree = "<group>"; };
+		8F8BF1CF18F0902400E2BA0E /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../location.png; sourceTree = "<group>"; };
+		8F8BF1D118F0903F00E2BA0E /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		A05D902393854C4D9680E9A8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4F9B06060644E2794B9FC0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CBDB929CC8014C8F9770D924 /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +198,7 @@
 		15D8416E951441B2A473FD67 = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1D118F0903F00E2BA0E /* location@2x.png */,
 				7BDB34CEB43044ADB08E7C85 /* Truckin */,
 				4110D9B58C214949AC963562 /* UnitTests */,
 				D60F16B9918343E3A08A3128 /* Frameworks */,
@@ -231,6 +239,7 @@
 		3583D9D09D3242BE82036D48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1CF18F0902400E2BA0E /* location.png */,
 				8F8BF1C418F06E6200E2BA0E /* avatar@2x.png */,
 				8F8BF1B418F0563400E2BA0E /* feed@2x.png */,
 				8F8BF1B518F0563400E2BA0E /* pushpin@2x.png */,
@@ -363,6 +372,8 @@
 		F7A1108BA3364CBDA320C71C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F8BF1CC18F0824400E2BA0E /* TruckHeaderView.h */,
+				8F8BF1CD18F0824400E2BA0E /* TruckHeaderView.m */,
 				8F8BF1C118F06C1F00E2BA0E /* ProfileHeaderView.h */,
 				8F8BF1C218F06C1F00E2BA0E /* ProfileHeaderView.m */,
 				8F8BF1A618F0492100E2BA0E /* FeedCell.h */,
@@ -465,8 +476,10 @@
 				8F8BF1C518F06E6200E2BA0E /* avatar@2x.png in Resources */,
 				013E6ADBE07A411BA424FB0C /* Images.xcassets in Resources */,
 				8F8BF1B318F055A700E2BA0E /* pushpin.png in Resources */,
+				8F8BF1D018F0902400E2BA0E /* location.png in Resources */,
 				8F8BF1B718F0563400E2BA0E /* pushpin@2x.png in Resources */,
 				8F8BF1AF18F0548800E2BA0E /* people@2x.png in Resources */,
+				8F8BF1D218F0903F00E2BA0E /* location@2x.png in Resources */,
 				8F8BF1B618F0563400E2BA0E /* feed@2x.png in Resources */,
 				8F8BF1B218F055A700E2BA0E /* feed.png in Resources */,
 			);
@@ -565,6 +578,7 @@
 				8F8BF19C18F0473E00E2BA0E /* FeedViewController.m in Sources */,
 				8F8BF1CB18F074E300E2BA0E /* DetailViewController.m in Sources */,
 				8F8BF1BA18F0585F00E2BA0E /* Truck.m in Sources */,
+				8F8BF1CE18F0824400E2BA0E /* TruckHeaderView.m in Sources */,
 				8F8BF1A518F047B200E2BA0E /* ProfileViewController.m in Sources */,
 				2D94CA15194F4DB2A4533664 /* main.m in Sources */,
 			);

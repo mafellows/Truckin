@@ -11,7 +11,7 @@
 @interface Truck : NSObject
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *truckDescription;
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSString *twitterName;
 @property (nonatomic, copy) NSString *urlString;

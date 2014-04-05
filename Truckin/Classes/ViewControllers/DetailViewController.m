@@ -7,8 +7,10 @@
 //
 
 #import "DetailViewController.h"
+#import "TruckHeaderView.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import <MapKit/MapKit.h>
 
 
 @interface DetailViewController ()
@@ -16,6 +18,7 @@
 @property (nonatomic, strong) Truck *truck;
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) TruckHeaderView *truckHeaderView;
 
 @end
 
@@ -26,8 +29,21 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.truck = truck;
+        self.navigationItem.title = truck.name;
         self.accountStore = [[ACAccountStore alloc] init];
         self.tweets = [NSMutableArray array];
+        CGRect headerFrame = CGRectMake(0, 0, 320.0f, 200.0f);
+        self.truckHeaderView = [[TruckHeaderView alloc] initWithFrame:headerFrame truck:truck];
+        
+        UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                     target:self
+                                                                                     action:@selector(shareOnMedia:)];
+        
+        UIBarButtonItem *directionsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location"]
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(getDirections:)];
+        self.navigationItem.rightBarButtonItems = @[ directionsButton, shareButton ];
     }
     return self;
 }
@@ -35,6 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.tableHeaderView = self.truckHeaderView;
     [self fetchTimeLineForUser:self.truck.twitterName];
 }
 
@@ -60,8 +77,9 @@
     }
     
     cell.textLabel.text = [self.tweets objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping; 
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     return cell;
 }
@@ -121,6 +139,25 @@
             }
         }];
     }
+}
+
+#pragma mark - Selector
+
+- (void)getDirections:(id)sender
+{
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.truck.location.latitude, self.truck.location.longitude)
+                                                   addressDictionary:nil];
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    [mapItem setName:self.truck.name];
+    [mapItem openInMapsWithLaunchOptions:nil];
+}
+
+- (void)shareOnMedia:(id)sender
+{
+    NSString *textToShare = [NSString stringWithFormat:@"%@ is amazing! Thank you @%@ #apihackathon", self.truck.name, self.truck.twitterName];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[textToShare] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 @end
